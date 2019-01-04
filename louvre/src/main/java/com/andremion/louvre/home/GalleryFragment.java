@@ -104,7 +104,7 @@ public class GalleryFragment extends Fragment implements MediaLoader.Callbacks, 
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.gallery_menu, menu);
+        inflater.inflate(R.menu.images_gallery_menu, menu);
     }
 
     @Override
@@ -114,6 +114,10 @@ public class GalleryFragment extends Fragment implements MediaLoader.Callbacks, 
         selectAll.setVisible(isMedia);
         MenuItem clear = menu.findItem(R.id.action_clear);
         clear.setVisible(isMedia);
+
+        // 隐藏 by Rect
+        clear.setVisible(false);
+        selectAll.setVisible(false);
     }
 
     @Override
@@ -158,7 +162,7 @@ public class GalleryFragment extends Fragment implements MediaLoader.Callbacks, 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_gallery, container, false);
+        View view = inflater.inflate(R.layout.images_fragment_gallery, container, false);
 
         mEmptyView = view.findViewById(android.R.id.empty);
 

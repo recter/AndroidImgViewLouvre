@@ -11,14 +11,14 @@
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:padding="@dimen/gallery_item_offset"
-        tools:listitem="@layout/list_item_gallery_media" />
+        tools:listitem="@layout/images_list_item_gallery_media" />
 
     <TextView
         android:id="@android:id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawableTop="@drawable/ic_no_images"
+        android:drawableTop="@drawable/images_ic_no_images"
         android:text="@string/activity_gallery_no_images"
         android:textAppearance="?textAppearanceSearchResultTitle"
         android:visibility="invisible"

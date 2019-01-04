@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.SharedElementCallback;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
+import android.widget.CheckedTextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +41,12 @@ public class MediaSharedElementCallback extends SharedElementCallback {
     public void setSharedElementViews(@NonNull View... sharedElementViews) {
         mSharedElementViews.clear();
         mSharedElementViews.addAll(Arrays.asList(sharedElementViews));
+    }
+
+    public void setSharedElementView(@NonNull View sharedElementView) {
+        mSharedElementViews.clear();
+        // mSharedElementViews.addAll(Arrays.asList(sharedElementViews));
+        mSharedElementViews.add(sharedElementView);
     }
 
     @Override
@@ -98,12 +105,14 @@ public class MediaSharedElementCallback extends SharedElementCallback {
     }
 
     private void forceSharedElementLayout(View view) {
+
         int widthSpec = View.MeasureSpec.makeMeasureSpec(view.getWidth(),
                 View.MeasureSpec.EXACTLY);
         int heightSpec = View.MeasureSpec.makeMeasureSpec(view.getHeight(),
                 View.MeasureSpec.EXACTLY);
         view.measure(widthSpec, heightSpec);
         view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+
     }
 
 }

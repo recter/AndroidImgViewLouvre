@@ -16,6 +16,8 @@
         android:scaleType="centerCrop"
         tools:ignore="ContentDescription" />
 
-    <include layout="@layout/checkbox" />
+    <include
+        layout="@layout/images_checkbox"
+        android:visibility="invisible" />
 
 </FrameLayout>

@@ -71,9 +71,12 @@ public class PreviewActivity extends AppCompatActivity implements MediaLoader.Ca
         intent.putExtra(EXTRA_MAX_SELECTION, maxSelection);
         intent.putExtra(EXTRA_MEDIA_TYPE_FILTER, mediaTypeFilter);
 
+        // 删除 Checkout by Rect
+//        Pair[] sharedElements = concatToSystemSharedElements(activity,
+//                Pair.create(imageView, ViewCompat.getTransitionName(imageView)),
+//                Pair.create(checkView, ViewCompat.getTransitionName(checkView)));
         Pair[] sharedElements = concatToSystemSharedElements(activity,
-                Pair.create(imageView, ViewCompat.getTransitionName(imageView)),
-                Pair.create(checkView, ViewCompat.getTransitionName(checkView)));
+                Pair.create(imageView, ViewCompat.getTransitionName(imageView)));
 
         //noinspection unchecked
         ActivityOptionsCompat options = ActivityOptionsCompat
@@ -123,7 +126,7 @@ public class PreviewActivity extends AppCompatActivity implements MediaLoader.Ca
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview);
+        setContentView(R.layout.images_activity_preview);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -172,7 +175,7 @@ public class PreviewActivity extends AppCompatActivity implements MediaLoader.Ca
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
         TransitionInflater inflater = TransitionInflater.from(this);
-        Transition sharedElementEnterTransition = inflater.inflateTransition(R.transition.shared_element);
+        Transition sharedElementEnterTransition = inflater.inflateTransition(R.transition.images_shared_element);
         sharedElementEnterTransition.addListener(new TransitionCallback() {
             @Override
             public void onTransitionEnd(Transition transition) {
@@ -215,7 +218,8 @@ public class PreviewActivity extends AppCompatActivity implements MediaLoader.Ca
 
     @Override
     public void onCheckedUpdated(boolean checked) {
-        mCheckbox.setChecked(checked);
+        // Rect 不上传
+        // mCheckbox.setChecked(checked);
     }
 
     @Override

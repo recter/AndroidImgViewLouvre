@@ -57,6 +57,9 @@ public class MediaTypeFilterDialog extends DialogFragment implements DialogInter
 
     public MediaTypeFilterDialog() {
         mSelectedTypes = new SparseBooleanArray();
+        mSelectedTypes.append(0,true);
+        mSelectedTypes.append(1,true);
+        mSelectedTypes.append(2,true);
     }
 
     @NonNull

@@ -19,17 +19,21 @@ package com.andremion.louvre.sample;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import com.andremion.louvre.Louvre;
 import com.andremion.louvre.home.GalleryActivity;
 import com.andremion.louvre.util.ItemOffsetDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,11 +71,35 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NumberPickerDialog.show(getSupportFragmentManager(), LOUVRE_REQUEST_CODE, mSelection);
+                // NumberPickerDialog.show(getSupportFragmentManager(), LOUVRE_REQUEST_CODE, mSelection);
+                SparseBooleanArray mSelectedTypes = new SparseBooleanArray();
+                mSelectedTypes.append(0,true);
+                mSelectedTypes.append(1,true);
+                mSelectedTypes.append(2,true);
+
+                Louvre.init(MainActivity.this)
+                        .setRequestCode(LOUVRE_REQUEST_CODE)
+                        .setMaxSelection(100)
+                        .setSelection(mSelection)
+                        .setMediaTypeFilter(parseToArray(mSelectedTypes))
+                        .open();
             }
         });
     }
 
+    @NonNull
+    private String[] parseToArray(@NonNull SparseBooleanArray selectedTypes) {
+        List<String> selectedTypeList = new ArrayList<>();
+        for (int i = 0; i < selectedTypes.size(); i++) {
+            int key = selectedTypes.keyAt(i);
+            if (selectedTypes.get(key, false)) {
+                selectedTypeList.add(Louvre.IMAGE_TYPES[key]);
+            }
+        }
+        String[] array = new String[selectedTypeList.size()];
+        selectedTypeList.toArray(array);
+        return array;
+    }
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

@@ -113,7 +113,7 @@ class PreviewAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = mInflater.inflate(R.layout.page_item_preview, container, false);
+        View view = mInflater.inflate(R.layout.images_page_item_preview, container, false);
         ViewHolder holder = new ViewHolder(view);
         Uri data = getData(position);
         onViewBound(holder, position, data);
@@ -170,7 +170,8 @@ class PreviewAdapter extends PagerAdapter {
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         if (object instanceof ViewHolder) {
             mCurrentPosition = position;
-            mSharedElementCallback.setSharedElementViews(((ViewHolder) object).imageView, mCheckbox);
+            // mSharedElementCallback.setSharedElementViews(((ViewHolder) object).imageView, mCheckbox);
+            mSharedElementCallback.setSharedElementView(((ViewHolder) object).imageView);
             if (mCallbacks != null) {
                 mCallbacks.onCheckedUpdated(isSelected(position));
             }

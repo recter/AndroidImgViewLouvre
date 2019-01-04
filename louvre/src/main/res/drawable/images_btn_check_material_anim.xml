@@ -11,15 +11,7 @@
      limitations under the License.
 -->
 
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/btn_checkbox_checked_mtrl">
-    <target
-        android:name="icon_null"
-        android:animation="@anim/btn_checkbox_to_unchecked_icon_null_animation" />
-    <target
-        android:name="check_path_merged"
-        android:animation="@anim/btn_checkbox_to_unchecked_check_path_merged_animation" />
-    <target
-        android:name="box_inner_merged"
-        android:animation="@anim/btn_checkbox_to_unchecked_box_inner_merged_animation" />
-</animated-vector>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/checked" android:state_checked="true" android:drawable="@drawable/images_btn_checkbox_checked_mtrl" />
+    <item android:id="@+id/unchecked" android:drawable="@drawable/images_unchecked_mtrl" />
+</selector>

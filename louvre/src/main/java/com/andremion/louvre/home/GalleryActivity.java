@@ -33,7 +33,6 @@ import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.andremion.counterfab.CounterFab;
 import com.andremion.louvre.R;
 import com.andremion.louvre.StoragePermissionActivity;
 import com.andremion.louvre.preview.PreviewActivity;
@@ -53,7 +52,7 @@ public class GalleryActivity extends StoragePermissionActivity implements Galler
     private static final int PREVIEW_REQUEST_CODE = 0;
 
     /**
-     * Start the Gallery Activity with additional launch information.
+     * Start the Gallery Activity with additional launch information.image
      *
      * @param activity        Context to launch activity from.
      * @param requestCode     If >= 0, this code will be returned in onActivityResult() when the activity exits.
@@ -107,20 +106,22 @@ public class GalleryActivity extends StoragePermissionActivity implements Galler
 
     private GalleryFragment mFragment;
     private ViewGroup mContentView;
-    private CounterFab mFab;
+    // 隐藏 by Rect
+    // private CounterFab mFab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
+        setContentView(R.layout.images_activity_gallery);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupTransition();
 
         mContentView = (ViewGroup) findViewById(R.id.coordinator_layout);
 
-        mFab = (CounterFab) findViewById(R.id.fab_done);
-        mFab.setOnClickListener(this);
+        // 隐藏 by Rect
+        // mFab = (CounterFab) findViewById(R.id.fab_done);
+        // mFab.setOnClickListener(this);
 
         mFragment = (GalleryFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_gallery);
         mFragment.setMaxSelection(getIntent().getIntExtra(EXTRA_MAX_SELECTION, DEFAULT_MAX_SELECTION));
@@ -143,24 +144,27 @@ public class GalleryActivity extends StoragePermissionActivity implements Galler
     private void setupTransition() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             TransitionInflater inflater = TransitionInflater.from(this);
-            Transition exitTransition = inflater.inflateTransition(R.transition.gallery_exit);
+            Transition exitTransition = inflater.inflateTransition(R.transition.images_gallery_exit);
             exitTransition.addListener(new TransitionCallback() {
                 @Override
                 public void onTransitionStart(Transition transition) {
-                    mFab.hide();
+                    // 隐藏 by Rect
+                    // mFab.hide();
                 }
             });
             getWindow().setExitTransition(exitTransition);
-            Transition reenterTransition = inflater.inflateTransition(R.transition.gallery_reenter);
+            Transition reenterTransition = inflater.inflateTransition(R.transition.images_gallery_reenter);
             reenterTransition.addListener(new TransitionCallback() {
                 @Override
                 public void onTransitionEnd(Transition transition) {
-                    mFab.show();
+                    // 隐藏 by Rect
+                    // mFab.show();
                 }
 
                 @Override
                 public void onTransitionCancel(Transition transition) {
-                    mFab.show();
+                    // 隐藏 by Rect
+                    // mFab.show();
                 }
             });
             getWindow().setReenterTransition(reenterTransition);
@@ -235,7 +239,8 @@ public class GalleryActivity extends StoragePermissionActivity implements Galler
 
     @Override
     public void onSelectionUpdated(int count) {
-        mFab.setCount(count);
+        // 隐藏 by Rect
+        // mFab.setCount(count);
     }
 
     @Override

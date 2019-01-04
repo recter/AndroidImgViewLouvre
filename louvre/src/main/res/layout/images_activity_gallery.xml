@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/images_fragment_gallery" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -29,14 +29,5 @@
             android:layout_height="wrap_content" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <com.andremion.counterfab.CounterFab
-        android:id="@+id/fab_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/gallery_fab_margin"
-        app:layout_behavior="com.andremion.louvre.util.FabBehavior"
-        app:srcCompat="@drawable/ic_done_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

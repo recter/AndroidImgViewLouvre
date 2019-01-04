@@ -143,10 +143,10 @@ class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
     @Override
     public GalleryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, @ViewType int viewType) {
         if (VIEW_TYPE_MEDIA == viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_gallery_media, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.images_list_item_gallery_media, parent, false);
             return new MediaViewHolder(view);
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_gallery_bucket, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.images_list_item_gallery_bucket, parent, false);
             return new BucketViewHolder(view);
         }
     }
@@ -175,8 +175,9 @@ class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
 
         if (VIEW_TYPE_MEDIA == getItemViewType(position)) {
             MediaViewHolder viewHolder = (MediaViewHolder) holder;
-            ViewCompat.setTransitionName(viewHolder.mCheckView, checkboxTransitionName);
-            viewHolder.mCheckView.setChecked(selected);
+            // 删除 Checkout by Rect
+            //ViewCompat.setTransitionName(viewHolder.mCheckView, checkboxTransitionName);
+            //viewHolder.mCheckView.setChecked(selected);
             holder.mImageView.setContentDescription(getLabel(position));
         } else {
             BucketViewHolder viewHolder = (BucketViewHolder) holder;
@@ -336,6 +337,7 @@ class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
             mCheckView = itemView.findViewById(R.id.check);
             mCheckView.setOnClickListener(this);
             itemView.setOnClickListener(this);
+            mCheckView.setVisibility(View.INVISIBLE);
         }
 
         @Override
